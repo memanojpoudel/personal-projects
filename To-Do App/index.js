@@ -35,7 +35,8 @@ function writeJSON(){
 });
 }
 
-//delete a single file from json ref: id
+//delete a single file from json ref: id 
+// YET TO COMPLETE
 function deleteJSON(){
     readJSON()
     setTimeout(function (){
