@@ -1,0 +1,48 @@
+<html>
+    <body>
+        <h1>To Do List</h1>
+        <input type="text" placeholder="Enter To-do">
+        <button onclick="addTodo()">Add To-Do</button>
+        <div id="todos"></div>
+    </body>
+
+    <script>
+        let todo = [];
+    // add todo to page
+        function addTodo(){
+            todo.push({
+                title: document.querySelector("input").value
+            })
+            render()
+        }
+    //delete individual todo
+        function deleteTodo(index){
+            todo.splice(index-1, 1);
+            render();
+        }
+    //static or component
+        function todoComponent(todo,index){
+            const divEl = document.createElement("div");
+            const h4El = document.createElement("h4");
+            const buttonEl = document.createElement("button");
+            h4El.innerHTML= todo.title;
+            buttonEl.innerHTML= "Delete";
+            buttonEl.setAttribute("onclick",'deleteTodo('+index+')');
+            divEl.setAttribute("id","todo-"+index);
+            divEl.append(h4El);
+            divEl.append(buttonEl);
+            index = index + 1;
+            return divEl;
+        }
+    //dynamic or render
+        function render(){
+            document.querySelector("#todos").innerHTML=" ";
+            let counter = 1;
+            for(i=0;i<todo.length;i++){
+                const element = todoComponent(todo[i],counter);
+                document.querySelector("#todos").appendChild(element);
+                counter = counter+1;
+            }
+        }
+    </script>
+</html>
